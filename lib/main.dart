@@ -2,8 +2,10 @@
 is whenever both dices have same number, you will get 10 points. Remember you can onlyroll the 
                                    dice 10 times. */
 
+import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'introScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,11 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "DiceProject",
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: IntroScreen(), //App will start from intro screen
     );
   }
 }
@@ -53,28 +56,38 @@ class _HomeScreenState extends State<HomeScreen> {
 
       //10 marks if both dice have same numbers.
 
-      if (dice1Image == "assets/dice1.png" && dice2Image == "assets/dice1.png") {
+      if (dice1Image == "assets/dice1.png" &&
+          dice2Image == "assets/dice1.png") {
         score += 10;
-      } else if (dice1Image == "assets/dice6.png" && dice2Image == "assets/dice6.png") {
+      } else if (dice1Image == "assets/dice6.png" &&
+          dice2Image == "assets/dice6.png") {
+        score += 10;
+      } else if (dice1Image == "assets/dice4.png" &&
+          dice2Image == "assets/dice4.png") {
+        score += 10;
+      } else if (dice1Image == "assets/dice5.png" &&
+          dice2Image == "assets/dice5.png") {
+        score += 10;
+      } else if (dice1Image == "assets/dice2.png" &&
+          dice2Image == "assets/dice2.png") {
+        score += 10;
+      } else if (dice1Image == "assets/dice3.png" &&
+          dice2Image == "assets/dice3.png") {
         score += 10;
       }
-       else if (dice1Image == "assets/dice4.png" && dice2Image == "assets/dice4.png") {
-        score += 10;
-      }
-        else if (dice1Image == "assets/dice5.png" && dice2Image == "assets/dice5.png") {
-        score += 10;
-        }
-        else if (dice1Image == "assets/dice2.png" && dice2Image == "assets/dice2.png") {
-        score += 10;
-        }
-         else if (dice1Image == "assets/dice3.png" && dice2Image == "assets/dice3.png") {
-        score += 10;
-        }
-
 
       rollsRemaining--;
     });
   }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   Timer(
+  //       Duration(seconds: 1),
+  //       () => Navigator.pushReplacement(
+  //           context, MaterialPageRoute(builder: (context) => HomeScreen())));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -95,12 +108,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     "Rolls remaining:",
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     rollsRemaining.toString(),
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -109,12 +124,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     "Score:",
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     score.toString(),
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -139,22 +156,18 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: rollsRemaining == 0 ? null : rollDice,
             child: Text(
               rollsRemaining == 0 ? "No rolls remaining" : "Roll Dice",
-              style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 254, 254, 254)),
+              style: const TextStyle(
+                  fontSize: 20, color: Color.fromARGB(255, 254, 254, 254)),
             ),
           ),
           const SizedBox(height: 20),
           const Text(
             "RULE: When ever both dices have same numbers, you will get 10 points",
-            style: TextStyle(fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.red),
-            
+            style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
           ),
         ],
       ),
     );
+  }
 }
-}
-
-
-
